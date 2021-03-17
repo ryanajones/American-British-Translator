@@ -9,7 +9,6 @@ module.exports = function (app) {
     // Handle translation if locale is American to British
     if (locale === 'american-to-british') {
       const translatedText = translator.americanToBritish(text);
-      console.log(translatedText);
       res.json({ translation: translatedText });
     }
 

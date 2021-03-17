@@ -14,7 +14,10 @@ class Translator {
     for (const key in americanOnly) {
       const regexPhrase = new RegExp(key);
       if (regexPhrase.test(translatedText)) {
-        translatedText = translatedText.replace(key, americanOnly[key]);
+        translatedText = translatedText.replace(
+          key,
+          `<span class="highlight">${americanOnly[key]}</span>`
+        );
       }
     }
 
@@ -24,9 +27,23 @@ class Translator {
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
           key,
-          americanToBritishSpelling[key]
+          `<span class="highlight">${americanToBritishSpelling[key]}</span>`
         );
       }
+    }
+
+    // Check to see if text has time format to translate
+    const regexTime = /(10|11|12|[1-9]):[0-5][0-9]/gm;
+    if (regexTime.test(translatedText)) {
+      const found = text.match(regexTime);
+      let translatedTime;
+      found.forEach((el, i) => {
+        translatedTime = found[i].replace(/:/, '.');
+        translatedText = translatedText.replace(
+          found[i],
+          `<span class="highlight">${translatedTime}</span>`
+        );
+      });
     }
     return translatedText;
   }
@@ -38,7 +55,10 @@ class Translator {
     for (const key in britishOnly) {
       const regexPhrase = new RegExp(key);
       if (regexPhrase.test(translatedText)) {
-        translatedText = translatedText.replace(key, americanOnly[key]);
+        translatedText = translatedText.replace(
+          key,
+          `<span class="highlight">${americanOnly[key]}</span>`
+        );
       }
     }
 
@@ -48,9 +68,23 @@ class Translator {
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
           americanToBritishSpelling[key],
-          key
+          `<span class="highlight">${key}</span>`
         );
       }
+    }
+
+    // Check to see if text has time format to translate
+    const regexTime = /(10|11|12|[1-9])\.[0-5][0-9]/gm;
+    if (regexTime.test(translatedText)) {
+      const found = text.match(regexTime);
+      let translatedTime;
+      found.forEach((el, i) => {
+        translatedTime = found[i].replace(/\./, ':');
+        translatedText = translatedText.replace(
+          found[i],
+          `<span class="highlight">${translatedTime}</span>`
+        );
+      });
     }
     return translatedText;
   }
