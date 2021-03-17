@@ -1,8 +1,7 @@
 const chai = require('chai');
-const assert = chai.assert;
+
+const { assert } = chai;
 
 const Translator = require('../components/translator.js');
 
-suite('Unit Tests', () => {
-
-});
+suite('Unit Tests', () => {});
