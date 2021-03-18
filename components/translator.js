@@ -45,6 +45,20 @@ class Translator {
         );
       });
     }
+
+    // Check to see if text has titles
+    const textSplit = translatedText.split(' ');
+    textSplit.forEach((el, i) => {
+      for (const key in americanToBritishTitles) {
+        if (el === key) {
+          textSplit[
+            i
+          ] = `<span class="highlight">${americanToBritishTitles[key]}</span>`;
+        }
+      }
+      translatedText = textSplit.join(' ');
+    });
+
     return translatedText;
   }
 
@@ -86,6 +100,18 @@ class Translator {
         );
       });
     }
+
+    // Check to see if text has titles
+    const textSplit = translatedText.split(' ');
+    textSplit.forEach((el, i) => {
+      for (const key in americanToBritishTitles) {
+        if (el === americanToBritishTitles[key]) {
+          textSplit[i] = `<span class="highlight">${key}</span>`;
+        }
+      }
+      translatedText = textSplit.join(' ');
+    });
+
     return translatedText;
   }
 }

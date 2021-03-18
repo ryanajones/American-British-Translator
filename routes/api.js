@@ -9,13 +9,13 @@ module.exports = function (app) {
     // Handle translation if locale is American to British
     if (locale === 'american-to-british') {
       const translatedText = translator.americanToBritish(text);
-      res.json({ translation: translatedText });
+      res.json({ text, translation: translatedText });
     }
 
     // Handle translation if locale is British to American
     if (locale === 'british-to-american') {
       const translatedText = translator.britishToAmerican(text);
-      res.json({ translation: translatedText });
+      res.json({ text, translation: translatedText });
     }
   });
 };
