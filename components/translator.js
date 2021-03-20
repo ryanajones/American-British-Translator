@@ -12,10 +12,10 @@ class Translator {
 
     // Check to see if text has any American only words to translate
     for (const key in americanOnly) {
-      const regexPhrase = new RegExp(key);
+      const regexPhrase = new RegExp(`(?<=\\s|^)${key}(?=\\s|$|\\.|,)`, 'ig');
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
-          key,
+          regexPhrase,
           `<span class="highlight">${americanOnly[key]}</span>`
         );
       }
@@ -23,17 +23,17 @@ class Translator {
 
     // Check to see if text has any American to British words to translate
     for (const key in americanToBritishSpelling) {
-      const regexPhrase = new RegExp(key);
+      const regexPhrase = new RegExp(`(?<=\\s|^)${key}(?=\\s|$|\\.|,)`, 'ig');
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
-          key,
+          regexPhrase,
           `<span class="highlight">${americanToBritishSpelling[key]}</span>`
         );
       }
     }
 
     // Check to see if text has time format to translate
-    const regexTime = /(10|11|12|[1-9]):[0-5][0-9]/gm;
+    const regexTime = /(10|11|12|[1-9]):[0-5][0-9]/g;
     if (regexTime.test(translatedText)) {
       const found = text.match(regexTime);
       let translatedTime;
@@ -58,7 +58,7 @@ class Translator {
       }
       translatedText = textSplit.join(' ');
     });
-
+    console.log(translatedText);
     return translatedText;
   }
 
@@ -67,28 +67,32 @@ class Translator {
 
     // Check to see if text has any British only words to translate
     for (const key in britishOnly) {
-      const regexPhrase = new RegExp(key);
+      const regexPhrase = new RegExp(`(?<=\\s|^)${key}(?=\\s|$|\\.|,)`, 'ig');
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
-          key,
-          `<span class="highlight">${americanOnly[key]}</span>`
+          regexPhrase,
+          `<span class="highlight">${britishOnly[key]}</span>`
         );
       }
     }
 
     // Check to see if text has any British to American words to translate
     for (const key in americanToBritishSpelling) {
-      const regexPhrase = new RegExp(americanToBritishSpelling[key]);
+      const regexPhrase = new RegExp(
+        `(?<=\\s|^)${americanToBritishSpelling[key]}(?=\\s|$|\\.|,)`,
+        'ig'
+      );
+
       if (regexPhrase.test(translatedText)) {
         translatedText = translatedText.replace(
-          americanToBritishSpelling[key],
+          regexPhrase,
           `<span class="highlight">${key}</span>`
         );
       }
     }
 
     // Check to see if text has time format to translate
-    const regexTime = /(10|11|12|[1-9])\.[0-5][0-9]/gm;
+    const regexTime = /(10|11|12|[1-9])\.[0-5][0-9]/g;
     if (regexTime.test(translatedText)) {
       const found = text.match(regexTime);
       let translatedTime;
@@ -111,7 +115,7 @@ class Translator {
       }
       translatedText = textSplit.join(' ');
     });
-
+    console.log(translatedText);
     return translatedText;
   }
 }
