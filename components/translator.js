@@ -58,7 +58,12 @@ class Translator {
       }
       translatedText = textSplit.join(' ');
     });
-    console.log(translatedText);
+
+    // Handle if text requires no translation
+    if (translatedText === text) {
+      translatedText = 'Everything looks good to me!';
+    }
+
     return translatedText;
   }
 
@@ -115,7 +120,12 @@ class Translator {
       }
       translatedText = textSplit.join(' ');
     });
-    console.log(translatedText);
+
+    // Handle if text requires no translation
+    if (translatedText === text) {
+      translatedText = 'Everything looks good to me!';
+    }
+
     return translatedText;
   }
 }
