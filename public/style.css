@@ -185,7 +185,7 @@ body .container .translator-container #output-container #solution-container {
 }
 
 body .container .translator-container #output-container #solution-container #translated-sentence {
-  color: var(--text-white);
+  color: #5190ff;
 }
 
 body .container .translator-container #output-container #error-msg {
