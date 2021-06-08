@@ -1,10 +1,10 @@
 # American British Translator
 
-> This is a full stack web app that can translate American English to British English and vice versa. Select the desired style of English to translate. Node.js and Express.js are used to create a web server with the HTTP module. The back-end handles the client side HTTP request for a sentence to translate. If there is a word that is translatable, the algorithm will inject it in place of the original word and highlight it. The Chai.js and Mocha testing frameworks are used for unit and function testing.
+An app capable of translating American English to British English and vice versa. Select the desired style of English to translate. Node and Express are used to create a RESTful API. The back-end handles client side HTTP requests for sentence translations. If any word in the sentence is translatable, an algorithm will inject and highlight the replacement for the original word. The Chai and Mocha testing tools are used for unit and function testing.
 
 ## Technologies Used
 
-HTML SCSS JavaScript Node.js Express.js Chai.js Mocha
+HTML SCSS JavaScript NodeJS ExpressJS Chai Mocha
 
 ## Deploy on Repl
 
